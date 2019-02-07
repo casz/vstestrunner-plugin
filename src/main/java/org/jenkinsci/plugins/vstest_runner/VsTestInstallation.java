@@ -63,6 +63,7 @@ public class VsTestInstallation extends ToolInstallation implements NodeSpecific
      *
      * @return the new object, an instance of MsBuildInstallation
      */
+    @SuppressWarnings("deprecation")
     protected Object readResolve() {
         if (this.pathToVsTest != null) {
             return new VsTestInstallation(this.getName(), this.pathToVsTest);
@@ -92,7 +93,7 @@ public class VsTestInstallation extends ToolInstallation implements NodeSpecific
 
     @Initializer(after = InitMilestone.EXTENSIONS_AUGMENTED)
     public static void onLoaded() {
-        DescriptorImpl descriptor = (VsTestInstallation.DescriptorImpl) Jenkins.getInstance().getDescriptor(VsTestInstallation.class);
+        DescriptorImpl descriptor = (VsTestInstallation.DescriptorImpl) Jenkins.getInstance().getDescriptorOrDie(VsTestInstallation.class);
         VsTestInstallation[] installations = descriptor.getInstallations();
         if (installations != null && installations.length > 0) {
             return;

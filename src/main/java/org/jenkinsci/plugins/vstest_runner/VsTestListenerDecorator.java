@@ -35,7 +35,7 @@ public class VsTestListenerDecorator extends LineTransformationOutputStream {
     private String trxFile;
     private String coverageFile;
 
-    public VsTestListenerDecorator(TaskListener listener) throws FileNotFoundException {
+    public VsTestListenerDecorator(TaskListener listener) {
         this.listener = listener != null ? listener.getLogger() : null;
 
         trxFile = null;
